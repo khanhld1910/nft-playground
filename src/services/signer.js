@@ -1,16 +1,16 @@
 const { ethers } = require('ethers')
 
-function getSigner(privateKey) {
-  const wallet = new ethers.Wallet(privateKey)
+function getSigner(privateKey, provider = undefined) {
+  const wallet = new ethers.Wallet(privateKey, provider)
   return wallet
 }
 
-function getSigners() {
+function getSigners(provider) {
   const signers = [
-    getSigner(process.env.PRIVATE_KEY_PERSON_A),
-    getSigner(process.env.PRIVATE_KEY_PERSON_B),
-    getSigner(process.env.PRIVATE_KEY_PERSON_C),
-    getSigner(process.env.PRIVATE_KEY_COHART_BACKEND)
+    getSigner(process.env.PRIVATE_KEY_PERSON_A, provider),
+    getSigner(process.env.PRIVATE_KEY_PERSON_B, provider),
+    getSigner(process.env.PRIVATE_KEY_PERSON_C, provider),
+    getSigner(process.env.PRIVATE_KEY_COHART_BACKEND, provider)
   ]
   return signers
 }

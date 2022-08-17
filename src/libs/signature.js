@@ -1,8 +1,8 @@
 const ethers = require('ethers')
 
 const createContractSignedData = async ({
-  contract,
-  provider,
+  contractAddress,
+  chainId,
   signer,
   domainName,
   domainVersion,
@@ -14,8 +14,8 @@ const createContractSignedData = async ({
   const domain = {
     name: domainName,
     version: domainVersion,
-    verifyingContract: contract.address,
-    chainId: ethers.BigNumber.from(provider._network.chainId)
+    verifyingContract: contractAddress,
+    chainId: ethers.BigNumber.from(chainId)
   }
 
   const signature = await signer._signTypedData(domain, signTypes, signData)

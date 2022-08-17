@@ -4,6 +4,7 @@ const EthMarketplace = require('../abis/EthMarketplace.json')
 
 const erc721 = {
   rinkeby: {
+    // address: '0xf06700bfdf18938b432b088b26646ea96be03443',
     address: '0xF06700bfdf18938b432b088B26646ea96be03443',
     abi: ExampleERC721
   }
