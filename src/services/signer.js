@@ -15,17 +15,6 @@ function getSigners(provider) {
   return signers
 }
 
-function getSignerAddresses() {
-  const signerAddresses = [
-    process.env.ADDRESS_PERSON_A,
-    process.env.ADDRESS_PERSON_B,
-    process.env.ADDRESS_PERSON_C,
-    process.env.ADDRESS_COHART_BACKEND
-  ]
-  return signerAddresses
-}
-
 module.exports = {
-  getSigners,
-  getSignerAddresses
+  getSigners
 }

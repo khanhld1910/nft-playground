@@ -14,7 +14,6 @@ const provider = getProvider(
 )
 
 const [signerA, signerB, signerC, signerCohart] = getSigners(provider)
-// const [addressA, addressB, addressC, addressCohart] = getSignerAddresses()
 
 const mintingContract = getContract(
   contractConfig.erc721.rinkeby.address,
@@ -29,7 +28,7 @@ const marketplace = getContract(
 const [seller, buyer] = [
   signerB, // the NFT is currently owned by this address
   signerA // will use this address to be buyer
-]
+] // switch between these two, or can add signerC to test
 
 const signatureTypes = {
   SellerSign: [
@@ -59,7 +58,7 @@ async function sellAndBuy() {
   await (async () => {
     const isApprovedToSaleBefore = await mintingContract
       .connect(seller)
-      .isApprovedForAll(sellerAddress, marketplace.address)
+      .isApprovedForAll(seller.address, marketplace.address)
 
     console.log('isApprovedForAll before', isApprovedToSaleBefore)
     if (isApprovedToSaleBefore) return // don't need to set approval if user has already done it before
@@ -75,7 +74,7 @@ async function sellAndBuy() {
 
     const isApprovedToSaleAfter = await mintingContract
       .connect(seller)
-      .isApprovedForAll(sellerAddress, marketplace.address)
+      .isApprovedForAll(seller.address, marketplace.address)
 
     console.log('isApprovedForAll after', isApprovedToSaleAfter)
   })()
